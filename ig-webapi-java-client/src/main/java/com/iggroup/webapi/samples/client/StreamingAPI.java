@@ -246,7 +246,13 @@ public class StreamingAPI {
 		String subscriptionKey = CHART_CANDLE_PATTERN.replace("{epic}", epic);
 		subscriptionKey = subscriptionKey.replace("{scale}", scale);
 
-		ExtendedTableInfo extendedTableInfo = new ExtendedTableInfo(
+      // from the old file
+      String[] fields = {CandleChart.LTV, CandleChart.UTM, CandleChart.DAY_OPEN_MID, CandleChart.DAY_NET_CHG_MID, CandleChart.DAY_PERC_CHG_MID, CandleChart.DAY_HIGH, CandleChart.DAY_LOW, CandleChart.OFR_OPEN, CandleChart.OFR_HIGH, CandleChart.OFR_LOW, CandleChart.OFR_CLOSE, CandleChart.BID_OPEN, CandleChart.BID_HIGH, CandleChart.BID_LOW, CandleChart.BID_CLOSE, CandleChart.CANDLE_START, CandleChart.CANDLE_TICK_COUNT};
+//        String[] fields = {"LTV", "TTV", "UTM", "DAY_OPEN_MID", "DAY_NET_CHG_MID", "DAY_PERC_CHG_MID", "DAY_HIGH", "DAY_LOW", "OFR_OPEN", "OFR_HIGH", "OFR_LOW", "OFR_CLOSE", "BID_OPEN", "BID_HIGH", "BID_LOW", "BID_CLOSE", "LTP_OPEN", "LTP_HIGH", "LTP_LOW", "LTP_CLOSE", "CANDLE_START", "CANDLE_TICK_COUNT"};
+      // ExtendedTableInfo extendedTableInfo = new ExtendedTableInfo(new String[]{subscriptionKey}, "MERGE", fields, true);
+
+
+        ExtendedTableInfo extendedTableInfo = new ExtendedTableInfo(
 				new String[]{subscriptionKey}, "MERGE", new String[]{"LTV",
 				"TTV", "UTM", "DAY_OPEN_MID","DAY_NET_CHG_MID",
 				"DAY_PERC_CHG_MID", "DAY_HIGH", "DAY_LOW", "OFR_OPEN",
