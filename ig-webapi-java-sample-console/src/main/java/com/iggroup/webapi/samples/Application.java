@@ -84,10 +84,15 @@ public class Application implements CommandLineRunner {
          connect(user, password, apiKey);
          listOpenPositions();
          listWatchlists();
+
+         // listWatchlists();
+         tradeableEpic = "IX.D.FTSE.DAILY.IP";
+
          subscribeToLighstreamerAccountUpdates();
          subscribeToLighstreamerHeartbeat();
          subscribeToLighstreamerPriceUpdates();
          subscribeToLighstreamerChartUpdates();
+         subscribeToLighstreamerChartCandles();
          subscribeToLighstreamerTradeUpdates();
          createPosition();
 
@@ -101,6 +106,14 @@ public class Application implements CommandLineRunner {
       } catch (Exception e) {
          LOG.error("Unexpected error:", e);
          return false;
+      } finally {
+         try {
+            disconnect();
+         } catch (Exception e) {
+            LOG.error("Unexpected error:", e);
+            return false;
+         }
+         LOG.info("Done");
       }
    }
 
@@ -254,7 +267,7 @@ public class Application implements CommandLineRunner {
          listeners.add(streamingAPI.subscribeForMarket(tradeableEpic, new HandyTableListenerAdapter() {
             @Override
             public void onUpdate(int i, String s, UpdateInfo updateInfo) {
-               LOG.info("Market i {} s {} data {}", i, s, updateInfo);
+               LOG.info("Market {} {} s {} data {}", i, s, updateInfo);
             }
          }));
       }
@@ -268,6 +281,21 @@ public class Application implements CommandLineRunner {
             @Override
             public void onUpdate(int i, String s, UpdateInfo updateInfo) {
                LOG.info("Chart i {} s {} data {}", i, s, updateInfo);
+            }
+         }));
+      }
+   }
+
+   private void subscribeToLighstreamerChartCandles() throws Exception {
+      if (tradeableEpic != null) {
+         LOG.info("Subscribing to Lightstreamer chart candles for market: {} ", tradeableEpic);
+         listeners.add(streamingAPI.subscribeForChartCandles(tradeableEpic, "1MINUTE", new HandyTableListenerAdapter() {
+            @Override
+            public void onUpdate(int i, String s, UpdateInfo updateInfo) {
+               //                    String timeStampData = updateInfo.getNewValue(2);
+               //                    Date date = new Date(Long.valueOf(timeStampData));
+
+               LOG.info("Chart {} for market {} : data {}", i, s, updateInfo);
             }
          }));
       }
