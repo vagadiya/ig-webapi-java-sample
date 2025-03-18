@@ -1,3 +1,9 @@
+🚧 Notice
+
+Date: 2024 August
+
+This repository is now deprecated and may be removed/replaced at a later date.
+
 ## IG Web API Java Sample
 [![Build Status](https://travis-ci.org/IG-Group/ig-webapi-java-sample.svg?branch=master)](https://travis-ci.org/IG-Group/ig-webapi-java-sample)
 
@@ -18,14 +24,14 @@ This repository contains two simple Java console sample applications which acces
 4.a) Run basic console app:
 ```
     cd ig-webapi-java-sample-console
-    java -jar target\ig-webapi-java-sample-console-<project version>.jar <username> <password> <api key>
+    java -jar target/ig-webapi-java-sample-console-<project version>.jar <username> <password> <api key>
 ```
 
 4.b) Run UI based console app
 ```
     cd ig-webapi-java-sample-console-ui
-    java -jar target\ig-webapi-java-sample-console-ui-<project version>.jar <username> <password> <api key> [<optional epic>]
+    java -jar target/ig-webapi-java-sample-console-ui-<project version>.jar <username> <password> <api key> [<optional epic>]
 ```
 
 To attach a remote debugger:
-    java -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y -jar target\ig-webapi-java-sample-console...
+    java -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y -jar target/ig-webapi-java-sample-console...
